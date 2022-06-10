@@ -1,6 +1,6 @@
 node {
     stage 'Clone the project'
-    git 'https://github.com/marripavankumar/swapi-assignment.git'
+    git 'https://github.com/marripavankumar/swapi-data-lift-service.git'
 
     dir('spring-jenkins-pipeline') {
         stage("Compilation and Analysis") {
