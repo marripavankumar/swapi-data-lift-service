@@ -1,79 +1,30 @@
-node {
-    stage 'Clone the project'
-    git 'https://github.com/marripavankumar/swapi-data-lift-service.git'
+pipeline {
+    agent any
 
-    dir('spring-jenkins-pipeline') {
-        stage("Compilation and Analysis") {
-            parallel 'Compilation': {
-                if (isUnix()) {
-                    sh "./mvnw clean install -DskipTests"
-                } else {
-                    bat "./mvnw.cmd clean install -DskipTests"
-                }
-            }, 'Static Analysis': {
-                stage("Checkstyle") {
-                    if (isUnix()) {
-                        sh "./mvnw checkstyle:checkstyle"
-                    } else {
-                        bat "./mvnw.cmd checkstyle:checkstyle"
-                    }
-                     step([$class: 'CheckStylePublisher',
-                          canRunOnFailed: true,
-                          defaultEncoding: '',
-                          healthy: '100',
-                          pattern: '**/target/checkstyle-result.xml',
-                          unHealthy: '90',
-                          useStableBuildAsReference: true
-                        ])
-                }
-            }
-        }
+    tools {
+        // Install the Maven version configured as "M3" and add it to the path.
+        maven "MAVEN_HOME"
+    }
 
-        stage("Tests and Deployment") {
-            parallel 'Unit tests': {
-                stage("Running unit tests") {
-                    try {
-                        if (isUnix()) {
-                            sh "./mvnw test -Punit"
-                        } else {
-                            bat "./mvnw.cmd test -Punit"
-                        }
-                    } catch(err) {
-                        step([$class: 'JUnitResultArchiver', testResults: '**/target/surefire-reports/TEST-*UnitTest.xml'])
-                        throw err
-                    }
-                    step([$class: 'JUnitResultArchiver', testResults: '**/target/surefire-reports/TEST-*UnitTest.xml'])
+    stages {
+        stage('Build') {
+            steps {
+                // Get some code from a GitHub repository
+                git 'https://github.com/marripavankumar/swapi-assignment.git'
 
-                }
-            }, 'Integration tests': {
-                stage("Running integration tests") {
-                    try {
-                        if (isUnix()) {
-                            sh "./mvnw test -Pintegration"
-                        } else {
-                            bat "./mvnw.cmd test -Pintegration"
-                        }
-                    } catch(err) {
-                        step([$class: 'JUnitResultArchiver', testResults: '**/target/surefire-reports/TEST-*IntegrationTest.xml'])
-                        throw err
-                    }
-                    step([$class: 'JUnitResultArchiver', testResults: '**/target/surefire-reports/TEST-*IntegrationTest.xml'])
-                }
+                // Run Maven on a Unix agent.
+               // sh "mvn -Dmaven.test.failure.ignore=true clean package"
+
+                // To run Maven on a Windows agent, use
+                 bat "mvn -Dmaven.test.failure.ignore=true clean package"
             }
 
-            stage("Staging") {
-                if (isUnix()) {
-                    sh "pid=\$(lsof -i:8200 -t); kill -TERM \$pid || kill -KILL \$pid"
-                } else {
-                    bat "FOR /F \"tokens=5 delims= \" %%G IN (\"netstat -a | findstr :8200\") DO TaskKill.exe /PID %%G /fi \"memusage gt 0\""
-                }
-
-                withEnv(['JENKINS_NODE_COOKIE=dontkill']) {
-                    if (isUnix()) {
-                        sh 'nohup ./mvnw spring-boot:run -Dserver.port=8200 &'
-                    } else {
-                        bat 'start mvnw.cmd spring-boot:run -Dserver.port=8200'
-                    }
+            post {
+                // If Maven was able to run the tests, even if some of the test
+                // failed, record the test results and archive the jar file.
+                success {
+                    junit '**/target/surefire-reports/TEST-*.xml'
+                    archiveArtifacts 'target/*.jar'
                 }
             }
         }
