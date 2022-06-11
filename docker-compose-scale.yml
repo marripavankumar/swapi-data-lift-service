@@ -1,0 +1,14 @@
+version: '2'
+services:
+    message-server:
+        build:
+            context: swapi-data-lift-service
+            dockerfile: Dockerfile
+        image: data-lift-service:latest
+        ports:
+            - 18800-18888:8200
+        networks:
+            - spring-cloud-network
+networks:
+    spring-cloud-network:
+        driver: bridge
