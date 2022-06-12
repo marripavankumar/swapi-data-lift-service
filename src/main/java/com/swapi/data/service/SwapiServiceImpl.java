@@ -48,45 +48,46 @@ public class SwapiServiceImpl<T> implements SwapiService {
 	@Override
 	public <T> Flux<T> getItemDetails(String type, String name) throws TypeNotFoundException,DataNotFoundException,Exception {
 		UrlService service = UrlFactory.getService(type.toLowerCase());
-		
+
 		if(null == service ) {
-			throw new TypeNotFoundException(SwapiConstants.TYPE_FILMS);
+			throw new TypeNotFoundException(SwapiConstants.TYPE_NOT_FOUND_EXCEPTION);
 		}
-		
+
 		Flux<T> data =  checkForData(service.getTypeUrl(),service.getType(), name,service.getParameterizedType());
-	
+
 		if(null == data) {
 			throw new DataNotFoundException(SwapiConstants.DATA_NOT_FOUND);
 		}
-		
+
 		return data;
 	}
 
 	@SuppressWarnings("hiding")
 	@Async
+	@Override
 	public <T> Flux<T>getDataFromService(String serviceUrl, 
 			ParameterizedTypeReference<T> typeReference) throws Exception {
-
 		Flux<T> responseDataFlux = null;
-			responseDataFlux = WebClient.create()
-					.get()
-					.uri(serviceUrl)
-					.retrieve()
-					.onStatus(HttpStatus::is4xxClientError, clientResponse ->
-							Mono.error(new DataNotFoundException(SwapiConstants.DATA_NOT_FOUND))
-					)
-					.onStatus(HttpStatus::is5xxServerError, clientResponse ->
-						Mono.error(new Exception())
-					)
-					.bodyToFlux(typeReference);
-			//			responseDataFlux.subscribe(response -> response.getClass());
-		
+		responseDataFlux = WebClient.create()
+				.get()
+				.uri(serviceUrl)
+				.retrieve()
+				.onStatus(HttpStatus::is4xxClientError, clientResponse ->
+				Mono.error(new DataNotFoundException(SwapiConstants.DATA_NOT_FOUND))
+						)
+				.onStatus(HttpStatus::is5xxServerError, clientResponse ->
+				Mono.error(new Exception())
+						)
+				.bodyToFlux(typeReference);
+		//			responseDataFlux.subscribe(response -> response.getClass());
+
 		return responseDataFlux;
 	}
-	
+
 	@Async
+	@Override
 	public <T> Flux<T> checkForData(String typeUrl, String type, String name, ParameterizedTypeReference<T> typeReference) throws DataNotFoundException,Exception{
-		
+
 		boolean performSearch = true;
 		Flux<T> response = null;
 		while(performSearch) {
@@ -116,6 +117,7 @@ public class SwapiServiceImpl<T> implements SwapiService {
 					performSearch = false;
 				}
 			}
+			
 			else if(type.equalsIgnoreCase(SwapiConstants.TYPE_PLANETS)) {
 				Planets planets = (Planets)data.blockFirst();
 				AtomicReference<PlanetsResults> planetResult = new AtomicReference<>();
@@ -141,7 +143,7 @@ public class SwapiServiceImpl<T> implements SwapiService {
 					performSearch = false;
 				}
 			}
-			
+
 			else if(type.equalsIgnoreCase(SwapiConstants.TYPE_FILMS)) {
 				Films films = (Films)data.blockFirst();
 				AtomicReference<FilmsResults> filmsResult = new AtomicReference<>();
@@ -192,7 +194,7 @@ public class SwapiServiceImpl<T> implements SwapiService {
 					performSearch = false;
 				}
 			}
-			
+
 			else if(type.equalsIgnoreCase(SwapiConstants.TYPE_SPICIES)) {
 				Species species = (Species)data.blockFirst();
 				AtomicReference<SpeciesResults> speciesResults = new AtomicReference<>();
@@ -244,12 +246,42 @@ public class SwapiServiceImpl<T> implements SwapiService {
 				}
 			}
 		}
-		
-		
+
+
 		return response;
 	}
 
-	
+//	@SuppressWarnings("unchecked")
+//	private boolean  getPeople(String typeUrl, String name,  Flux<T> data , boolean performSearch , Flux<T> response) throws DataNotFoundException {
+//
+//		People people = (People)data.blockFirst();
+//		AtomicReference<PeopleResults> peopleResult = new AtomicReference<>();
+//		people.getResults().parallelStream().forEach(
+//				result ->{
+//					if( result.getName().equals(name)) {
+//						peopleResult.set(result);
+//					}
+//				});
+//		if(null == peopleResult.get()) {
+//			if(null!= people.getNext()) {
+//				typeUrl = people.getNext()	;
+//				return performSearch = Boolean.TRUE;
+//			}else {
+//				performSearch = Boolean.FALSE;
+//				throw new DataNotFoundException(SwapiConstants.DATA_NOT_FOUND);
+//			}
+//		}else {
+//			List<PeopleResults> results = new ArrayList<>();
+//			results.add(peopleResult.get());
+//			people.setResults(results);
+//			response =  (Flux<T>) Flux.just(people);
+//			performSearch = Boolean.FALSE;
+//		}
+//		return performSearch;
+//	}
+}
+
+
 //TODO : Needto check on generic soluion instead of typecasting to each POJO 
 //	@Async
 //	public <T> Flux<T> checkForData(String typeUrl, String type, String name, ParameterizedTypeReference<T> typeReference) throws Exception{
@@ -287,5 +319,8 @@ public class SwapiServiceImpl<T> implements SwapiService {
 //		}
 //		return response;
 //	}
-	
-}
+
+
+
+
+
