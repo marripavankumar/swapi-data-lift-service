@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.swapi.data.exception.DataNotFoundException;
 import com.swapi.data.exception.TypeNotFoundException;
 import com.swapi.data.model.DataNotFound;
+import com.swapi.data.model.TypeNotFound;
 import com.swapi.data.service.SwapiService;
 
 import reactor.core.publisher.Flux;
@@ -29,11 +30,11 @@ public class StarWarsApiController {
 		Flux<T> response = null;
 		try {
 			response = swapiService.getItemDetails(type, name);
-		} catch (DataNotFoundException e) {
+		} catch (DataNotFoundException  | NullPointerException e) {
 			response.just(new DataNotFound());
 		}
 		catch (TypeNotFoundException e) {
-			response.just(new DataNotFound());
+			response.just(new TypeNotFound());
 		}
 		catch(Exception e) {
 			e.printStackTrace();

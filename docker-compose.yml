@@ -7,7 +7,7 @@ services:
             dockerfile: Dockerfile
         image: data-lift-service:latest
         ports:
-            - 18888:8200
+            - 18888:8201
         networks:
             - spring-cloud-network
 networks:

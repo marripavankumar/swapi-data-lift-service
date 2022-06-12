@@ -1,0 +1,505 @@
+{
+	"info": {
+		"_postman_id": "fd330bd9-fba6-4833-b8cd-53f59585dd9d",
+		"name": "Swapi",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Swapi",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://swapi.dev/api/",
+					"protocol": "http",
+					"host": [
+						"swapi",
+						"dev"
+					],
+					"path": [
+						"api",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "planettest-Tatooine",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "text/plain",
+						"type": "default",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8200/swapi/filmdetails?type=planets&name=Tatooine",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8200",
+					"path": [
+						"swapi",
+						"filmdetails"
+					],
+					"query": [
+						{
+							"key": "type",
+							"value": "planets"
+						},
+						{
+							"key": "name",
+							"value": "Tatooine"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "planettest-Mirial",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "text/plain",
+						"type": "default",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8200/swapi/filmdetails?type=planets&name=Mirial",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8200",
+					"path": [
+						"swapi",
+						"filmdetails"
+					],
+					"query": [
+						{
+							"key": "type",
+							"value": "planets"
+						},
+						{
+							"key": "name",
+							"value": "Mirial"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "planettest-Mirial2-Data  NotFound",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "text/plain",
+						"type": "default",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8200/swapi/filmdetails?type=planets&name=Mirial2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8200",
+					"path": [
+						"swapi",
+						"filmdetails"
+					],
+					"query": [
+						{
+							"key": "type",
+							"value": "planets"
+						},
+						{
+							"key": "name",
+							"value": "Mirial2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "films-A New Hope",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "text/plain",
+						"type": "default",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8200/swapi/filmdetails?type=films&name=A New Hope",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8200",
+					"path": [
+						"swapi",
+						"filmdetails"
+					],
+					"query": [
+						{
+							"key": "type",
+							"value": "films"
+						},
+						{
+							"key": "name",
+							"value": "A New Hope"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "people-Luke Skywalker",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "text/plain",
+						"type": "default",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8200/swapi/filmdetails?type=people&name=Luke Skywalker",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8200",
+					"path": [
+						"swapi",
+						"filmdetails"
+					],
+					"query": [
+						{
+							"key": "type",
+							"value": "people"
+						},
+						{
+							"key": "name",
+							"value": "Luke Skywalker"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "species-Nautolan",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "text/plain",
+						"type": "default",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8200/swapi/filmdetails?type=species&name=Nautolan",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8200",
+					"path": [
+						"swapi",
+						"filmdetails"
+					],
+					"query": [
+						{
+							"key": "type",
+							"value": "species"
+						},
+						{
+							"key": "name",
+							"value": "Nautolan"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "starships-Star Destroyer",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "text/plain",
+						"type": "default",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8200/swapi/filmdetails?type=starships&name=Star Destroyer",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8200",
+					"path": [
+						"swapi",
+						"filmdetails"
+					],
+					"query": [
+						{
+							"key": "type",
+							"value": "starships"
+						},
+						{
+							"key": "name",
+							"value": "Star Destroyer"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "vehicles-AT-RT",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "text/plain",
+						"type": "default",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8200/swapi/filmdetails?type=vehicles&name=AT-RT",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8200",
+					"path": [
+						"swapi",
+						"filmdetails"
+					],
+					"query": [
+						{
+							"key": "type",
+							"value": "vehicles"
+						},
+						{
+							"key": "name",
+							"value": "AT-RT"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://swapi.dev/api/films/",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://swapi.dev/api/films/",
+					"protocol": "https",
+					"host": [
+						"swapi",
+						"dev"
+					],
+					"path": [
+						"api",
+						"films",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://swapi.dev/api/planets/?page=5",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://swapi.dev/api/planets/?page=5",
+					"protocol": "https",
+					"host": [
+						"swapi",
+						"dev"
+					],
+					"path": [
+						"api",
+						"planets",
+						""
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "5"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://swapi.dev/api/starships/",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://swapi.dev/api/starships/",
+					"protocol": "https",
+					"host": [
+						"swapi",
+						"dev"
+					],
+					"path": [
+						"api",
+						"starships",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://swapi.dev/api/species/",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://swapi.dev/api/species/",
+					"protocol": "https",
+					"host": [
+						"swapi",
+						"dev"
+					],
+					"path": [
+						"api",
+						"species",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://swapi.dev/api/films/",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://swapi.dev/api/films/",
+					"protocol": "https",
+					"host": [
+						"swapi",
+						"dev"
+					],
+					"path": [
+						"api",
+						"films",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://swapi.dev/api/people/",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://swapi.dev/api/people/",
+					"protocol": "https",
+					"host": [
+						"swapi",
+						"dev"
+					],
+					"path": [
+						"api",
+						"people",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://swapi.dev/api/planets/?page=6",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://swapi.dev/api/planets/?page=6",
+					"protocol": "https",
+					"host": [
+						"swapi",
+						"dev"
+					],
+					"path": [
+						"api",
+						"planets",
+						""
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "6"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://swapi.dev/api/vehicles/",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://swapi.dev/api/vehicles/",
+					"protocol": "https",
+					"host": [
+						"swapi",
+						"dev"
+					],
+					"path": [
+						"api",
+						"vehicles",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

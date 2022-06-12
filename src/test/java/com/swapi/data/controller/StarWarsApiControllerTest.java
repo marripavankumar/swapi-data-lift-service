@@ -1,15 +1,17 @@
 package com.swapi.data.controller;
 
-import static org.junit.Assert.assertTrue;
-import static org.junit.jupiter.api.Assertions.*;
-
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.web.servlet.MockMvc;
 
 class StarWarsApiControllerTest {
 
+	@Autowired
+	private MockMvc mockMvc;
+	
 	@Test
-	void testGetSwapiDetails() {
-		assertTrue(true);
+	void swapiControllerwith200OK() {
+			
 	}
 
 }
