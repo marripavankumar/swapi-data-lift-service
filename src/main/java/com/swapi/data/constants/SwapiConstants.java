@@ -1,4 +1,4 @@
-package com.swapi.data.validator;
+package com.swapi.data.constants;
 
 public class SwapiConstants {
 	
@@ -17,5 +17,18 @@ public class SwapiConstants {
 	public static final String TYPE_VEHICLES= "vehicles";
 	public static final String TYPE_SPICIES= "species";
 	public static final String TYPE_STAR_SHIPS= "starships";
+	
+	
+	public static final String REQUEST_MAPPING=  "/swapi";
+	public static final String  GET_MAPPING_FILM_DETAILS = "/filmdetails";
+	public static final String  INTERNAL_SERVER_ERROR = "Data Not Foud | Request Type is not available";
+	public static final String  TYPE_SERVICE_NOT_FOUND= "Service  not found";
+	public static final String  OK= "Successfull";
+	
+	//HTTP STATUS CODE
+	public static final String HTTP_STATUS_CODE_500 = "500";
+	public static final String HTTP_STATUS_CODE_200 = "200";
+	public static final String HTTP_STATUS_CODE_404 = "404";
+	
 	
 }

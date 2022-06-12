@@ -11,7 +11,7 @@ import org.springframework.http.converter.json.MappingJackson2HttpMessageConvert
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-import com.swapi.data.validator.SwapiConstants;
+import com.swapi.data.constants.SwapiConstants;
 
 @Configuration
 //@EnableWebMvc

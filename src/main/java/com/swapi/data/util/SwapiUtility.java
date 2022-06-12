@@ -1,12 +1,12 @@
 package com.swapi.data.util;
 
+import com.swapi.data.constants.SwapiConstants;
 import com.swapi.data.model.Films;
 import com.swapi.data.model.JsonBaseData;
 import com.swapi.data.model.People;
 import com.swapi.data.model.Planets;
 import com.swapi.data.model.Species;
 import com.swapi.data.model.Starships;
-import com.swapi.data.validator.SwapiConstants;
 
 import reactor.core.publisher.Flux;
 

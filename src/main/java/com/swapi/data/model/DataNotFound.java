@@ -5,7 +5,7 @@ import java.time.LocalDateTime;
 import org.springframework.boot.jackson.JsonComponent;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.swapi.data.validator.SwapiConstants;
+import com.swapi.data.constants.SwapiConstants;
 
 @JsonComponent
 public class DataNotFound {

@@ -13,6 +13,7 @@ import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 
+import com.swapi.data.constants.SwapiConstants;
 import com.swapi.data.exception.DataNotFoundException;
 import com.swapi.data.exception.TypeNotFoundException;
 import com.swapi.data.model.Films;
@@ -29,7 +30,6 @@ import com.swapi.data.model.Vehicles;
 import com.swapi.data.model.VehiclesResults;
 import com.swapi.data.url.service.UrlFactory;
 import com.swapi.data.url.service.UrlService;
-import com.swapi.data.validator.SwapiConstants;
 
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
