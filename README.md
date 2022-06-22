@@ -10,27 +10,26 @@
 		
 ##Design (component level):
 
-		1) Implemented swapi -data-lift service  using spring **webflux** to achieve reactive none blocking feature.
+1) Implemented swapi -data-lift service  using spring **webflux** to achieve reactive none blocking feature.
 		
-		2)StarWarsApiController - controller  which takes request type  & name as request parameters.
+2)StarWarsApiController - controller  which takes request type  & name as request parameters.
 		
-		3)SwapiService - retrieves the request type details and name details based on the input provided.
-		
-		  All the methods of swapi service are annotated with **@Async** annotation to execute in separate threads.
+3)SwapiService - retrieves the request type details and name details based on the input provided.
+ All the methods of swapi service are annotated with **@Async** annotation to execute in separate threads.
 		  
-			a)getItemDetails()- gets the urlfactory, check for data , if not available throws exception
+	a)getItemDetails()- gets the urlfactory, check for data , if not available throws exception
 			
-			b)checkForData() - validates the type of request and makes getDataFromService(),
-				Retrieves the data by calling different pagination params, if data not available in initial response
-				(service calls done in iteration model until all pages are completed/ data is found).
+	b)checkForData() - validates the type of request and makes getDataFromService(),
+	Retrieves the data by calling different pagination params, if data not available in initial response
+	(service calls done in iteration model until all pages are completed/ data is found).
 				
-			c)getDataFromService()- makes call to swapi url through webclient to achecieve asynchronous, non-blocking features.
+	c)getDataFromService()- makes call to swapi url through webclient to achecieve asynchronous, non-blocking features.
 			
-		4)UrlFactory - factory class used to retrieve type of url factory based on request provided by client.
-			ex: 1)return FilmsUrlService if request type is films
-				2)return PeopleUrlService if request type is people.
+4)UrlFactory - factory class used to retrieve type of url factory based on request provided by client.
+	ex: 1)return FilmsUrlService if request type is films
+	2)return PeopleUrlService if request type is people.
 			
-			Below are the services which will be returned by url factory
+Below are the services which will be returned by url factory
 			
 			FilmsUrlService
 			PeopleUrlService
@@ -39,25 +38,24 @@
 			StarshipsUrlService
 			VehicleUrlService
 			
-		###Security
+###Security
 		security is being achieved through Oauth2 for authorization.
 		SecurityConfig - Authenticates the request based on role and credentials.
 		SwapiOAuth2AuthServer - Oauth2 Authorization server.
 		SwapiOAuth2ResServer - OAuth2 Resource server.
 	
-		###Exception Handling:
-			ApiError : Error message pojo to display custom messages based on http codes.
-			CustomRestExceptionHandler:
-			DataNotFoundException
-			HttpMediaTypeNotAcceptableExceptionExampleController
-			TypeNotFoundException
+###Exception Handling:
+			ApiError - Error message pojo to display custom messages based on http codes.
+			CustomRestExceptionHandler - controller Advice to handle exception messages bases on http response codes.
+			DataNotFoundException - Custom exception thrown when data not found.  
+			TypeNotFoundException - custom exception thrown when request type not found.
 
 		
-#Sample Request Response :
+##Sample Request Response :
+###Request : 
+		http://localhost:8200/swapi/filmdetails?type=planets&name=Tatooine
 
-					Request : http://localhost:8200/swapi/filmdetails?type=planets&name=Tatooine
-					
-					Response:
+###Response:
 					{
 					    "count": 60,
 					    "next": null,
