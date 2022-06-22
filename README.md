@@ -1,14 +1,14 @@
 # swapi-assignment
 
-#Swapi -data-lift service: 
+**Swapi -data-lift service:** 
 	Data Lift service takes the input  the SWAPI services request type and request name, based on that it retrieves the various components
 	of the request type and request name.
-#Tech Stack:
+**Tech Stack:**
 		Spring booot - 2.3.1
 		java 8
 		Maven 3.5.2
 		
-#Design (component level):
+**Design (component level):**
 
 1) Implemented swapi -data-lift service  using spring **webflux** to achieve reactive none blocking feature.
 		
@@ -38,14 +38,14 @@ Below are the services which will be returned by url factory
 			StarshipsUrlService
 			VehicleUrlService
 			
-##Security
+**Security:**
 		security is being achieved through Oauth2 for authorization.
 		
 		SecurityConfig - Authenticates the request based on role and credentials.
 		SwapiOAuth2AuthServer - Oauth2 Authorization server.
 		SwapiOAuth2ResServer - OAuth2 Resource server.
 	
-##Exception Handling:
+**Exception Handling:**
 
 			ApiError - Error message pojo to display custom messages based on http codes.
 			CustomRestExceptionHandler - controller Advice to handle exception messages bases on http response codes.
@@ -53,11 +53,11 @@ Below are the services which will be returned by url factory
 			TypeNotFoundException - custom exception thrown when request type not found.
 
 		
-##Sample Request Response :
-###Request : 
+**Sample Request Response :**
+**Request : **
 		http://localhost:8200/swapi/filmdetails?type=planets&name=Tatooine
 
-###Response:
+**Response:**
 					{
 					    "count": 60,
 					    "next": null,
@@ -84,3 +84,10 @@ Below are the services which will be returned by url factory
 					        }
 					    ]
 					}
+					
+**CI/CD:** 
+	1. jenkins is configured and created a **web hook** with git hub, intiates a build once code is committed.
+	2. created pipeline script to generate artifacts after build.
+	![https://github.com/marripavankumar/swapi-data-lift-service/blob/master/images/jenkins.jpg]
+	3. 
+	
