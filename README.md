@@ -1,15 +1,19 @@
 # swapi-assignment
-	Tech Stack:
+	#Design :
+		Implemented ***swapi -data-lift service***  using spring ***webflux*** to get the reactive  none blocking feature.
+	
+	#Tech Stack:
 		Spring booot - 2.3.1
 		java 8
 		
-	Components-Funtionality:
-		Swapi -data-lift service: Data Lift service takes the input  the SWAPI services request type and request name, based on that it retrieves the various components
+	#Components-Funtionality:
+		#Swapi -data-lift service: 
+			Data Lift service takes the input  the SWAPI services request type and request name, based on that it retrieves the various components
 		of the request type and request name.
 		
-		Sample Request Response :
-					Request : http://localhost:8200/swapi/filmdetails?type=planets&name=Tatooine
-					Response:
+		#Sample Request Response :
+					#Request : http://localhost:8200/swapi/filmdetails?type=planets&name=Tatooine
+					#Response:
 					{
 					    "count": 60,
 					    "next": null,
