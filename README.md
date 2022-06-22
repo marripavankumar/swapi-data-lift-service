@@ -1,17 +1,53 @@
 # swapi-assignment
-	#Design :
-		Implemented ***swapi -data-lift service***  using spring ***webflux*** to get the reactive  none blocking feature.
-	
-	#Tech Stack:
+
+#Swapi -data-lift service: 
+	Data Lift service takes the input  the SWAPI services request type and request name, based on that it retrieves the various components
+	of the request type and request name.
+#Tech Stack:
 		Spring booot - 2.3.1
 		java 8
+		Maven 3.5.2
 		
-	#Components-Funtionality:
-		#Swapi -data-lift service: 
-			Data Lift service takes the input  the SWAPI services request type and request name, based on that it retrieves the various components
-		of the request type and request name.
+#Design (component level):
+		1) Implemented swapi -data-lift service  using spring webflux to achieve reactive none blocking feature.
 		
-		#Sample Request Response :
+		2)StarWarsApiController - controller  which takes request type  & name as request parameters.
+		
+		3)SwapiService - retrieves the request type details and name details based on the input provided.
+		
+		  All the methods of swapi service are annotated with @Async annotation to execute in separate threads.
+		  
+			a)getItemDetails()- gets the urlfactory, check for data , if not available throws exception
+			
+			b)checkForData() - validates the type of request and makes getDataFromService(),
+				Retrieves the data by calling different pagination params, if data not available in initial response
+				(service calls done in iteration model until all pages are completed/ data is found).
+				
+			c)getDataFromService()- makes call to swapi url through webclient to achecieve asynchronous, non-blocking features.
+			
+		4)UrlFactory - factory class used to retrieve type of url factory based on request provided by client.
+			ex: 1)return FilmsUrlService if request type is films
+				2)return PeopleUrlService if request type is people.
+			
+			Below are the services which will be returned by url factory
+			
+			FilmsUrlService
+			PeopleUrlService
+			PlanetsUrlService
+			SpeciesUrlService
+			StarshipsUrlService
+			VehicleUrlService
+			
+		5)#Security
+		security is being achieved through Oauth2 for authorization.
+		SecurityConfig - Authenticates the request based on role and credentials.
+		SwapiOAuth2AuthServer - Oauth2 Authorization server.
+		SwapiOAuth2ResServer - OAuth2 Resource server.
+	
+	
+
+		
+#Sample Request Response :
 					#Request : http://localhost:8200/swapi/filmdetails?type=planets&name=Tatooine
 					#Response:
 					{
