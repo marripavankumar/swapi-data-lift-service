@@ -1,31 +1,36 @@
 # swapi-assignment
 
 **Swapi -data-lift service:** 
+	
 	Data Lift service takes the input  the SWAPI services request type and request name, based on that it retrieves the various components
 	of the request type and request name.
+
 **Tech Stack:**
-		Spring booot - 2.3.1
-		java 8
-		Maven 3.5.2
+		
+	Spring booot - 2.3.1
+	java 8
+	Maven 3.5.2
+	jenkins 2.355
+	junit 5
 		
 **Design (component level):**
 
 1) Implemented swapi -data-lift service  using spring **webflux** to achieve reactive none blocking feature.
 		
-2)StarWarsApiController - controller  which takes request type  & name as request parameters.
+2) StarWarsApiController - controller  which takes request type  & name as request parameters.
 		
-3)SwapiService - retrieves the request type details and name details based on the input provided.
+3) SwapiService - retrieves the request type details and name details based on the input provided.
  All the methods of swapi service are annotated with **@Async** annotation to execute in separate threads.
 		  
-	a)getItemDetails()- gets the urlfactory, check for data , if not available throws exception
+	a) getItemDetails()- gets the urlfactory, check for data , if not available throws exception
 			
-	b)checkForData() - validates the type of request and makes getDataFromService(),
+	b) checkForData() - validates the type of request and makes getDataFromService(),
 	Retrieves the data by calling different pagination params, if data not available in initial response
 	(service calls done in iteration model until all pages are completed/ data is found).
 				
-	c)getDataFromService()- makes call to swapi url through webclient to achecieve asynchronous, non-blocking features.
+	c) getDataFromService()- makes call to swapi url through webclient to achecieve asynchronous, non-blocking features.
 			
-4)UrlFactory - factory class used to retrieve type of url factory based on request provided by client.
+4) UrlFactory - factory class used to retrieve type of url factory based on request provided by client.
 	ex: 1)return FilmsUrlService if request type is films
 	2)return PeopleUrlService if request type is people.
 			
@@ -87,17 +92,21 @@ Below are the services which will be returned by url factory
 					
 **CI/CD:** 
 
-	1. jenkins is configured and created a **web hook** with git hub, intiates a build once code is committed.
+	1) jenkins is configured and created a **web hook** with git hub, intiates a build once code is committed.
 	
-	2. created pipeline script to generate artifacts after build.
+	2) created pipeline script to generate artifacts after build.
 	
 	![jenkins](./images/jenkin.jpg)
 	
-	3. Build will be successful based on succesfful run of junit test cases.
+	3) Build will be successful based on succesfful run of junit test cases.
 	
 **Open-API :**
 	
-	-swapi-data-lift-service is configured with open-api specification.
-	-Details controllers, operations, request body, response codes can be viewed in thefollowing link
+	1) swapi-data-lift-service is configured with open-api specification.
+	
+	2) Details controllers, operations, request body, response codes can be viewed in the following link
+		
+		http://localhost:8200/swagger-ui/index.html#/
+	
 	
 	
