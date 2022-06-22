@@ -43,7 +43,18 @@ public class SwapiServiceImpl<T> implements SwapiService {
 	String baseUrl;
 
 	private static Logger logger = LoggerFactory.getLogger(SwapiServiceImpl.class);
-
+	
+	
+	/***
+	 * 
+	 * @param <T>
+	 * @param type
+	 * @param name
+	 * @return
+	 * @throws TypeNotFoundException
+	 * @throws DataNotFoundException
+	 * @throws Exception
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public <T> Flux<T> getItemDetails(String type, String name) throws TypeNotFoundException,DataNotFoundException,Exception {
@@ -61,7 +72,15 @@ public class SwapiServiceImpl<T> implements SwapiService {
 
 		return data;
 	}
-
+	
+	/***
+	 * 
+	 * @param <T>
+	 * @param serviceUrl
+	 * @param typeReference
+	 * @return
+	 * @throws Exception
+	 */
 	@SuppressWarnings("hiding")
 	@Async
 	@Override
@@ -84,6 +103,17 @@ public class SwapiServiceImpl<T> implements SwapiService {
 		return responseDataFlux;
 	}
 
+	/***
+	 * 
+	 * @param <T>
+	 * @param typeUrl
+	 * @param type
+	 * @param name
+	 * @param typeReference
+	 * @return
+	 * @throws DataNotFoundException
+	 * @throws Exception
+	 */
 	@Async
 	@Override
 	public <T> Flux<T> checkForData(String typeUrl, String type, String name, ParameterizedTypeReference<T> typeReference) throws DataNotFoundException,Exception{

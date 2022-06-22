@@ -36,7 +36,13 @@ public class StarWarsApiController {
 
 
 
-
+	/***
+	 * 
+	 * @param <T>
+	 * @param type - indicates the request type of component(ex: films, planets etc)
+	 * @param name-  indicates the resource name of request type.
+	 * @return - response if resource is found or custom exception based on http response code
+	 */
 	@SuppressWarnings("static-access")
 	@ApiResponses(value = {
 			@ApiResponse(responseCode = SwapiConstants.HTTP_STATUS_CODE_500, description = SwapiConstants.INTERNAL_SERVER_ERROR),

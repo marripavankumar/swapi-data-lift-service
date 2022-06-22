@@ -30,5 +30,7 @@ public class SwapiConstants {
 	public static final String HTTP_STATUS_CODE_200 = "200";
 	public static final String HTTP_STATUS_CODE_404 = "404";
 	
+	public static final String SECURITY_ROLE_USER="USER";
+	
 	
 }

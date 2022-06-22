@@ -31,26 +31,26 @@
 			
 Below are the services which will be returned by url factory
 			
-			FilmsUrlService
-			PeopleUrlService
-			PlanetsUrlService
-			SpeciesUrlService
-			StarshipsUrlService
-			VehicleUrlService
+		-FilmsUrlService
+		-PeopleUrlService
+		-PlanetsUrlService
+		-SpeciesUrlService
+		-StarshipsUrlService
+		-VehicleUrlService
 			
 **Security:**
 		security is being achieved through Oauth2 for authorization.
 		
-		SecurityConfig - Authenticates the request based on role and credentials.
-		SwapiOAuth2AuthServer - Oauth2 Authorization server.
-		SwapiOAuth2ResServer - OAuth2 Resource server.
+		-SecurityConfig - Authenticates the request based on role and credentials.
+		-SwapiOAuth2AuthServer - Oauth2 Authorization server.
+		-SwapiOAuth2ResServer - OAuth2 Resource server.
 	
 **Exception Handling:**
 
-			ApiError - Error message pojo to display custom messages based on http codes.
-			CustomRestExceptionHandler - controller Advice to handle exception messages bases on http response codes.
-			DataNotFoundException - Custom exception thrown when data not found.  
-			TypeNotFoundException - custom exception thrown when request type not found.
+	-ApiError - Error message pojo to display custom messages based on http codes.
+	-CustomRestExceptionHandler - controller Advice to handle exception messages bases on http response codes.
+	-DataNotFoundException - Custom exception thrown when data not found.  
+	-TypeNotFoundException - custom exception thrown when request type not found.
 
 		
 **Sample Request Response :**
@@ -91,7 +91,13 @@ Below are the services which will be returned by url factory
 	
 	2. created pipeline script to generate artifacts after build.
 	
-	![jenkins](https://github.com/marripavankumar/swapi-data-lift-service/blob/master/images/jenkins.jpg)
+	![jenkins](./images/jenkin.jpg)
 	
 	3. Build will be successful based on succesfful run of junit test cases.
+	
+**Open-API :**
+	
+	-swapi-data-lift-service is configured with open-api specification.
+	-Details controllers, operations, request body, response codes can be viewed in thefollowing link
+	
 	
