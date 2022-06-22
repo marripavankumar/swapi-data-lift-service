@@ -1,21 +1,22 @@
 # swapi-assignment
 
-#Swapi -data-lift service: 
+##Swapi -data-lift service: 
 	Data Lift service takes the input  the SWAPI services request type and request name, based on that it retrieves the various components
 	of the request type and request name.
-#Tech Stack:
+##Tech Stack:
 		Spring booot - 2.3.1
 		java 8
 		Maven 3.5.2
 		
-#Design (component level):
-		1) Implemented swapi -data-lift service  using spring webflux to achieve reactive none blocking feature.
+##Design (component level):
+
+		1) Implemented swapi -data-lift service  using spring **webflux** to achieve reactive none blocking feature.
 		
 		2)StarWarsApiController - controller  which takes request type  & name as request parameters.
 		
 		3)SwapiService - retrieves the request type details and name details based on the input provided.
 		
-		  All the methods of swapi service are annotated with @Async annotation to execute in separate threads.
+		  All the methods of swapi service are annotated with **@Async** annotation to execute in separate threads.
 		  
 			a)getItemDetails()- gets the urlfactory, check for data , if not available throws exception
 			
@@ -38,18 +39,25 @@
 			StarshipsUrlService
 			VehicleUrlService
 			
-		5)#Security
+		###Security
 		security is being achieved through Oauth2 for authorization.
 		SecurityConfig - Authenticates the request based on role and credentials.
 		SwapiOAuth2AuthServer - Oauth2 Authorization server.
 		SwapiOAuth2ResServer - OAuth2 Resource server.
 	
-	
+		###Exception Handling:
+			ApiError : Error message pojo to display custom messages based on http codes.
+			CustomRestExceptionHandler:
+			DataNotFoundException
+			HttpMediaTypeNotAcceptableExceptionExampleController
+			TypeNotFoundException
 
 		
 #Sample Request Response :
-					#Request : http://localhost:8200/swapi/filmdetails?type=planets&name=Tatooine
-					#Response:
+
+					Request : http://localhost:8200/swapi/filmdetails?type=planets&name=Tatooine
+					
+					Response:
 					{
 					    "count": 60,
 					    "next": null,
