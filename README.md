@@ -86,8 +86,12 @@ Below are the services which will be returned by url factory
 					}
 					
 **CI/CD:** 
+
 	1. jenkins is configured and created a **web hook** with git hub, intiates a build once code is committed.
+	
 	2. created pipeline script to generate artifacts after build.
-	![https://github.com/marripavankumar/swapi-data-lift-service/blob/master/images/jenkins.jpg]
-	3. 
+	
+	![jenkins](https://github.com/marripavankumar/swapi-data-lift-service/blob/master/images/jenkins.jpg)
+	
+	3. Build will be successful based on succesfful run of junit test cases.
 	
