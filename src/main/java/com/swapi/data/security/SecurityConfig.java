@@ -25,7 +25,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.requestMatchers()
-          .antMatchers("/login", "/oauth/authorize")
+          .antMatchers("/login", "/oauth/authorize","/oauth/token")
           .and()
           .authorizeRequests()
           .anyRequest().authenticated()
@@ -38,7 +38,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         auth
         	.inMemoryAuthentication()
             .withUser(user)
-            .password(secret)
+            .password(passwordEncoder().encode(secret))
             .roles(SwapiConstants.SECURITY_ROLE_USER);
     }
      

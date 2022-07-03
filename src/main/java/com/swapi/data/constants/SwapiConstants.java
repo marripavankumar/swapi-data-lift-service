@@ -19,7 +19,7 @@ public class SwapiConstants {
 	public static final String TYPE_STAR_SHIPS= "starships";
 	
 	
-	public static final String REQUEST_MAPPING=  "/swapi";
+	public static final String REQUEST_MAPPING_SWAPI=  "/swapi";
 	public static final String  GET_MAPPING_FILM_DETAILS = "/filmdetails";
 	public static final String  INTERNAL_SERVER_ERROR = "Data Not Foud | Request Type is not available";
 	public static final String  TYPE_SERVICE_NOT_FOUND= "Service  not found";
@@ -30,7 +30,16 @@ public class SwapiConstants {
 	public static final String HTTP_STATUS_CODE_200 = "200";
 	public static final String HTTP_STATUS_CODE_404 = "404";
 	
+	
+	//OAuth2 constants
 	public static final String SECURITY_ROLE_USER="USER";
+	public static final String CLIENT_APP= "clientapp";
+	public static final String GRANT_TYPE_PASSWORD= "password";
+	public static final String GRANT_TYPE_AUTHORIZATION = "authorization_code";
+	public static final String GRANT_TYPE_REFRESH_TOKEN= "refresh_token";
+	public static final String READ_ONLY_CLIENT = "READ_ONLY_CLIENT";
+	public static final String READ_PROFILE_INFO = "read_profile_info";
+	public static final String OAUTH2_RESOURCE = "oauth2-resource";
+	public static final String REDIRECT_URL = "http://localhost:8200/login";
 	
-	
-}
+}	

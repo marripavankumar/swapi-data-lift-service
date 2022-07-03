@@ -9,6 +9,8 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.A
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
 
+import com.swapi.data.constants.SwapiConstants;
+
 @Configuration
 @EnableAuthorizationServer
 public class SwapiOAuth2AuthServer extends AuthorizationServerConfigurerAdapter 
@@ -32,13 +34,13 @@ public class SwapiOAuth2AuthServer extends AuthorizationServerConfigurerAdapter
 	public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
 		clients
 			.inMemory()
-			.withClient("clientapp")
+			.withClient(SwapiConstants.CLIENT_APP)
 			.secret(secret)
-			.authorizedGrantTypes("password", "authorization_code", "refresh_token")
-			.authorities("READ_ONLY_CLIENT")
-			.scopes("read_profile_info")
-			.resourceIds("oauth2-resource")
-			.redirectUris("http://localhost:8081/login")
+			.authorizedGrantTypes(SwapiConstants.GRANT_TYPE_PASSWORD, SwapiConstants.GRANT_TYPE_AUTHORIZATION, SwapiConstants.GRANT_TYPE_REFRESH_TOKEN)
+			.authorities(SwapiConstants.READ_ONLY_CLIENT)
+			.scopes(SwapiConstants.READ_PROFILE_INFO)
+			.resourceIds(SwapiConstants.OAUTH2_RESOURCE)
+			.redirectUris(SwapiConstants.REDIRECT_URL)
 			.accessTokenValiditySeconds(5000)
 			.refreshTokenValiditySeconds(50000);
 	}

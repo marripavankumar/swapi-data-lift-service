@@ -7,11 +7,11 @@
 
 **Tech Stack:**
 		
-	Spring booot - 2.3.1
-	java 8
-	Maven 3.5.2
-	jenkins 2.355
-	junit 5
+	- Spring booot - 2.3.1
+	- java 8
+	- Maven 3.5.2
+	- jenkins 2.355
+	- junit 5
 		
 **Design (component level):**
 
@@ -31,8 +31,9 @@
 	c) getDataFromService()- makes call to swapi url through webclient to achecieve asynchronous, non-blocking features.
 			
 4) UrlFactory - factory class used to retrieve type of url factory based on request provided by client.
-	ex: 1)return FilmsUrlService if request type is films
-	2)return PeopleUrlService if request type is people.
+	ex: 
+		1) return FilmsUrlService if request type is films
+		2) return PeopleUrlService if request type is people.
 			
 Below are the services which will be returned by url factory
 			
@@ -44,11 +45,29 @@ Below are the services which will be returned by url factory
 		-VehicleUrlService
 			
 **Security:**
-		security is being achieved through Oauth2 for authorization.
+
+		1) security is being achieved through Oauth2 for authorization.
+		
+		2) Implemented in memory security with user credentials and role USER
 		
 		-SecurityConfig - Authenticates the request based on role and credentials.
 		-SwapiOAuth2AuthServer - Oauth2 Authorization server.
 		-SwapiOAuth2ResServer - OAuth2 Resource server.
+		
+		**sample unauthorized response :**
+		
+		<UnauthorizedException>
+		    <error>unauthorized</error>
+		    <error_description>Full authentication is required to access this resource</error_description>
+		</UnauthorizedException>
+		
+		
+**steps to retrieve token:**
+  
+  **Authorization grant code: **
+	http://localhost:8200/oauth/authorize?client_id=clientapp&response_type=code&scope=read_profile_info
+	
+  ** Access Token from Authorization Server: **
 	
 **Exception Handling:**
 

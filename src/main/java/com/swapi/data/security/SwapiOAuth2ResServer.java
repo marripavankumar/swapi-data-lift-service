@@ -14,6 +14,6 @@ public class SwapiOAuth2ResServer extends ResourceServerConfigurerAdapter
 		http
         	.authorizeRequests()
         	.antMatchers("/").permitAll()
-        	.antMatchers("/api/v1/**").authenticated();
+        	.antMatchers("/swapi/**").authenticated();
 	}
 }

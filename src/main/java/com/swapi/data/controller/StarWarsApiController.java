@@ -16,7 +16,6 @@ import com.swapi.data.model.People;
 import com.swapi.data.model.Planets;
 import com.swapi.data.model.Species;
 import com.swapi.data.model.Starships;
-import com.swapi.data.model.TypeNotFound;
 import com.swapi.data.model.Vehicles;
 import com.swapi.data.service.SwapiService;
 
@@ -28,7 +27,7 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 @RestController
-@RequestMapping(value = SwapiConstants.REQUEST_MAPPING)
+@RequestMapping(value = SwapiConstants.REQUEST_MAPPING_SWAPI)
 public class StarWarsApiController {
 
 	@Autowired

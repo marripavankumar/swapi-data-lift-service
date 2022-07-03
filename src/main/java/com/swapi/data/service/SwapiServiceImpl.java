@@ -48,9 +48,9 @@ public class SwapiServiceImpl<T> implements SwapiService {
 	/***
 	 * 
 	 * @param <T>
-	 * @param type
-	 * @param name
-	 * @return
+	 * @param type - type of request ia taken as input ex: planets, films etc
+	 * @param name - name of resource of type ex: Tatooine (film type resource)
+	 * @return - returns list of available items matched based on request type and name
 	 * @throws TypeNotFoundException
 	 * @throws DataNotFoundException
 	 * @throws Exception
@@ -76,9 +76,9 @@ public class SwapiServiceImpl<T> implements SwapiService {
 	/***
 	 * 
 	 * @param <T>
-	 * @param serviceUrl
-	 * @param typeReference
-	 * @return
+	 * @param serviceUrl - service url is provided to mek web client call, also pagenation related url
+	 * @param typeReference - type reference based ex: ParameterizedTypeReference<Films>() if request type is films
+	 * @return - response data available based on request type and name
 	 * @throws Exception
 	 */
 	@SuppressWarnings("hiding")
@@ -106,12 +106,12 @@ public class SwapiServiceImpl<T> implements SwapiService {
 	/***
 	 * 
 	 * @param <T>
-	 * @param typeUrl
-	 * @param type
-	 * @param name
-	 * @param typeReference
-	 * @return
-	 * @throws DataNotFoundException
+	 * @param typeUrl - service url is provided to mek web client call, also pagenation related url
+	 * @param type - type of request ia taken as input ex: planets, films etc
+	 * @param name - name of resource of type ex: Tatooine (film type resource)
+	 * @param typeReference - type reference based ex: ParameterizedTypeReference<Films>() if request type is films
+	* @return - response data available based on request type and name
+	 * @throws DataNotFoundException - throws custom exception DataNotFound if data is not available
 	 * @throws Exception
 	 */
 	@Async
