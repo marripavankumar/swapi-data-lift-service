@@ -1,5 +1,7 @@
 package com.swapi.data.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,6 +20,7 @@ import com.swapi.data.model.Species;
 import com.swapi.data.model.Starships;
 import com.swapi.data.model.Vehicles;
 import com.swapi.data.service.SwapiService;
+import com.swapi.data.service.SwapiServiceImpl;
 
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -33,6 +36,7 @@ public class StarWarsApiController {
 	@Autowired
 	private  SwapiService swapiService;
 
+	private static Logger logger = LoggerFactory.getLogger(StarWarsApiController.class);
 
 
 	/***
@@ -58,10 +62,11 @@ public class StarWarsApiController {
 			response = swapiService.getItemDetails(type, name);
 		} catch (DataNotFoundException  | NullPointerException | TypeNotFoundException e) {
 			response.just(new DataNotFound());
+			logger.error("Exception message thrown :{}",e.getMessage());
 		}
 		
 		catch(Exception e) {
-			e.printStackTrace();
+			logger.error("Exception message{}", e.getMessage());
 		}
 		return response.single();
 	}

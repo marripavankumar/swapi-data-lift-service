@@ -6,6 +6,56 @@
 	},
 	"item": [
 		{
+			"name": "jwt-authenticate",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);\r",
+							"pm.globals.set(\"token\", jsonData.token);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "text/plain",
+						"type": "default",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"pavan\",\r\n    \"password\": \"password\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8200/authenticate",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8200",
+					"path": [
+						"authenticate"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "Swapi",
 			"request": {
 				"method": "GET",
@@ -28,11 +78,21 @@
 		{
 			"name": "planettest-Tatooine",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
 				"header": [
 					{
-						"key": "Accept",
-						"value": "text/plain",
+						"key": "Authorization",
+						"value": "Bearer {{token}}",
 						"type": "default",
 						"disabled": true
 					}
@@ -65,13 +125,15 @@
 		{
 			"name": "planettest-Mirial",
 			"request": {
+				"auth": {
+					"type": "noauth"
+				},
 				"method": "GET",
 				"header": [
 					{
-						"key": "Accept",
-						"value": "text/plain",
-						"type": "default",
-						"disabled": true
+						"key": "client_id",
+						"value": "104565064339-99p8tkifmai11h8tre8efq7us98dbnqn.apps.googleusercontent.com",
+						"type": "default"
 					}
 				],
 				"url": {
@@ -100,7 +162,7 @@
 			"response": []
 		},
 		{
-			"name": "planettest-Mirial2-Data  NotFound",
+			"name": "planettest-Mirial2-500_Internal-server-error",
 			"request": {
 				"method": "GET",
 				"header": [
@@ -137,8 +199,55 @@
 			"response": []
 		},
 		{
+			"name": "planettest-Mirial2-404  Not Found",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "text/plain",
+						"type": "default",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8200/swapi1/filmdetails?type=planets&name=Mirial2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8200",
+					"path": [
+						"swapi1",
+						"filmdetails"
+					],
+					"query": [
+						{
+							"key": "type",
+							"value": "planets"
+						},
+						{
+							"key": "name",
+							"value": "Mirial2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "films-A New Hope",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
 				"header": [
 					{
@@ -176,6 +285,16 @@
 		{
 			"name": "people-Luke Skywalker",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
 				"header": [
 					{
@@ -213,6 +332,16 @@
 		{
 			"name": "species-Nautolan",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
 				"header": [
 					{
@@ -250,6 +379,16 @@
 		{
 			"name": "starships-Star Destroyer",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
 				"header": [
 					{
@@ -287,6 +426,16 @@
 		{
 			"name": "vehicles-AT-RT",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
 				"header": [
 					{
@@ -498,6 +647,14 @@
 						""
 					]
 				}
+			},
+			"response": []
+		},
+		{
+			"name": "New Request",
+			"request": {
+				"method": "GET",
+				"header": []
 			},
 			"response": []
 		}

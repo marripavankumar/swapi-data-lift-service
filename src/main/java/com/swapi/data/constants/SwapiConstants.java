@@ -31,7 +31,7 @@ public class SwapiConstants {
 	public static final String HTTP_STATUS_CODE_404 = "404";
 	
 	
-	//OAuth2 constants
+	//SECURITY constants
 	public static final String SECURITY_ROLE_USER="USER";
 	public static final String CLIENT_APP= "clientapp";
 	public static final String GRANT_TYPE_PASSWORD= "password";
@@ -41,5 +41,13 @@ public class SwapiConstants {
 	public static final String READ_PROFILE_INFO = "read_profile_info";
 	public static final String OAUTH2_RESOURCE = "oauth2-resource";
 	public static final String REDIRECT_URL = "http://localhost:8200/login";
+	
+	public static final String UNAUTHORIZED = "Unauthorized";
+	public static final String AUTHORIZED= "Authorization";
+	public static final String BEARER = "Bearer ";
+	public static final String AUTHENTICATE= "/authenticate";
+	public static final String UNABLE_TO_GET_JWT_TOKEN ="Unable to get JWT Token";
+	public static final String JWT_TOKEN_EXPIRED= "JWT Token has expired";
+	public static final String BEARER_NOT_FOUND= "JWT Token does not begin with Bearer String";
 	
 }	

@@ -46,28 +46,39 @@ Below are the services which will be returned by url factory
 			
 **Security:**
 
-		1) security is being achieved through Oauth2 for authorization.
+		1) security is being achieved through JWT for Authentication.
 		
-		2) Implemented in memory security with user credentials and role USER
+		2) Implemented in memory security with user credentials
 		
-		-SecurityConfig - Authenticates the request based on role and credentials.
-		-SwapiOAuth2AuthServer - Oauth2 Authorization server.
-		-SwapiOAuth2ResServer - OAuth2 Resource server.
-		
+		-JwtAuthenticationEntryPoint.java - Entry point for JWT Authentication.
+		-JwtRequestFilter.java - Filtr to retrieve Bearer token associated with header.
+		-JwtTokenUtil.java - Utility class to generate and validate token.
+		-WebSecurityConfig.java - condition on Authentication requests.
+	
 		**sample unauthorized response :**
 		
-		<UnauthorizedException>
-		    <error>unauthorized</error>
-		    <error_description>Full authentication is required to access this resource</error_description>
-		</UnauthorizedException>
+		{
+		    "timestamp": 1657996758354,
+		    "status": 401,
+		    "error": "Unauthorized",
+		    "message": "",
+		    "path": "/swapi/filmdetails"
+		}
 		
 		
 **steps to retrieve token:**
   
   **Authorization grant code: **
-	http://localhost:8200/oauth/authorize?client_id=clientapp&response_type=code&scope=read_profile_info
-	
+		http://localhost:8200/authenticate
+		request body:
+			{
+			    "username": "xxx",
+			    "password": "xxx"
+			}
   ** Access Token from Authorization Server: **
+  	{
+    "token": "xxxx"
+	}	
 	
 **Exception Handling:**
 
@@ -128,4 +139,10 @@ Below are the services which will be returned by url factory
 		http://localhost:8200/swagger-ui/index.html#/
 	
 	
-	
+**Code-Coverage:**	
+	mvn sonar:sonar -Dsonar.host.url=http://localhost:9000 
+  	-Dsonar.login=the-generated-token
+  	
+  	
+  	pavan: 687d742492b3f0cac593e022dfbde73ce69f2e4c
+  	
