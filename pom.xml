@@ -54,7 +54,10 @@
 			<version>0.9.1</version>
 		</dependency>
 		<!--OPEN API -->
-
+			<dependency>
+			<groupId>org.springframework.kafka</groupId>
+			<artifactId>spring-kafka</artifactId>
+		</dependency>
 		<dependency>
 			<groupId>com.fasterxml.jackson.dataformat</groupId>
 			<artifactId>jackson-dataformat-xml</artifactId>

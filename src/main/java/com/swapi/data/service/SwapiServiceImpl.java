@@ -6,22 +6,26 @@ import java.util.concurrent.atomic.AtomicReference;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpStatus;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
+import org.springframework.web.reactive.function.client.ClientResponse;
 import org.springframework.web.reactive.function.client.WebClient;
 
 import com.swapi.data.constants.SwapiConstants;
 import com.swapi.data.exception.DataNotFoundException;
 import com.swapi.data.exception.TypeNotFoundException;
+import com.swapi.data.kafka.service.KafkaProducerService;
 import com.swapi.data.model.Films;
 import com.swapi.data.model.FilmsResults;
 import com.swapi.data.model.People;
 import com.swapi.data.model.PeopleResults;
 import com.swapi.data.model.Planets;
 import com.swapi.data.model.PlanetsResults;
+import com.swapi.data.model.RequestData;
 import com.swapi.data.model.Species;
 import com.swapi.data.model.SpeciesResults;
 import com.swapi.data.model.Starships;
@@ -41,7 +45,10 @@ public class SwapiServiceImpl<T> implements SwapiService {
 
 	@Value("${swapi.url}")
 	String baseUrl;
-
+	
+	@Autowired
+	KafkaProducerService kafkaProducer;
+	
 	private static Logger logger = LoggerFactory.getLogger(SwapiServiceImpl.class);
 	
 	
@@ -85,7 +92,7 @@ public class SwapiServiceImpl<T> implements SwapiService {
 	@Async
 	@Override
 	public <T> Flux<T>getDataFromService(String serviceUrl, 
-			ParameterizedTypeReference<T> typeReference) throws Exception {
+			ParameterizedTypeReference<T> typeReference,String type, String name) throws Exception {
 		Flux<T> responseDataFlux = null;
 		responseDataFlux = WebClient.create()
 				.get()
@@ -98,9 +105,27 @@ public class SwapiServiceImpl<T> implements SwapiService {
 				Mono.error(new Exception())
 						)
 				.bodyToFlux(typeReference);
-		//			responseDataFlux.subscribe(response -> response.getClass());
 
 		return responseDataFlux;
+		
+//		  Mono<ClientResponse> clientResponse = WebClient.builder().build()
+//		            .get().uri(serviceUrl)
+//		            .exchange();
+//		  clientResponse.subscribe(response ->{
+//			  HttpStatus stausCode = response.statusCode();
+//			  if(stausCode.equals(HttpStatus.NOT_FOUND ) || stausCode.equals(HttpStatus.INTERNAL_SERVER_ERROR)) {
+//				  System.setProperty("api.offline.enabled", "true");
+//				 kafkaProducer.sendMessage(new RequestData(name, type));
+//				 Mono.error(new DataNotFoundException(SwapiConstants.DATA_NOT_FOUND));
+//			  }
+//			  else {
+//				  if(System.getProperty("api.offline.enabled").equals("true")) {
+//					  System.setProperty("api.offline.enabled", "false");
+//				  }
+//			  }
+//		  });
+//		  responseDataFlux = clientResponse.flux();
+//		  return (Flux<T>) responseDataFlux;
 	}
 
 	/***
@@ -121,7 +146,8 @@ public class SwapiServiceImpl<T> implements SwapiService {
 		boolean performSearch = true;
 		Flux<T> response = null;
 		while(performSearch) {
-			Flux<T> data = getDataFromService(typeUrl,typeReference);
+			Flux<T> data = getDataFromService(typeUrl,typeReference,type,name);
+			
 			if(type.equalsIgnoreCase(SwapiConstants.TYPE_PEOPLE)) {
 				People people = (People)data.blockFirst();
 				AtomicReference<PeopleResults> peopleResult = new AtomicReference<>();

@@ -68,7 +68,7 @@ class SwapiServiceImplTest {
 		
 		UrlService service = UrlFactory.getService(type.toLowerCase());
 		
-		Flux<Planets> planetData = swapiService.getDataFromService(serviceUrl, service.getParameterizedType());
+		Flux<Planets> planetData = swapiService.getDataFromService(serviceUrl, service.getParameterizedType(),type,"Geonosis");
 		
 		Planets planets = planetData.blockFirst();
 		assertEquals(planets.getCount(), 60);
@@ -82,7 +82,7 @@ class SwapiServiceImplTest {
 	void testGetDataFromServiceException() {
 		String type = "planets1";
 		UrlService service = UrlFactory.getService(type.toLowerCase());
-		assertThrows(Exception.class, ()->{Flux<Planets> planetData = swapiService.getDataFromService(service.getTypeUrl(), service.getParameterizedType());});
+		assertThrows(Exception.class, ()->{Flux<Planets> planetData = swapiService.getDataFromService(service.getTypeUrl(), service.getParameterizedType(),type,"");});
 	}
 	
 	

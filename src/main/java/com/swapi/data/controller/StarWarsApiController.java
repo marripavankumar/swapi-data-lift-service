@@ -20,7 +20,6 @@ import com.swapi.data.model.Species;
 import com.swapi.data.model.Starships;
 import com.swapi.data.model.Vehicles;
 import com.swapi.data.service.SwapiService;
-import com.swapi.data.service.SwapiServiceImpl;
 
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;

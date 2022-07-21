@@ -68,14 +68,14 @@ Below are the services which will be returned by url factory
 		
 **steps to retrieve token:**
   
-  **Authorization grant code: **
+**Authentication : **
 		http://localhost:8200/authenticate
 		request body:
 			{
 			    "username": "xxx",
 			    "password": "xxx"
 			}
-  ** Access Token from Authorization Server: **
+** Access Token from Authorization Server: **
   	{
     "token": "xxxx"
 	}	

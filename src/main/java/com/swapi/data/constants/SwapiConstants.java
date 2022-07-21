@@ -31,6 +31,7 @@ public class SwapiConstants {
 	public static final String HTTP_STATUS_CODE_404 = "404";
 	
 	
+	
 	//SECURITY constants
 	public static final String SECURITY_ROLE_USER="USER";
 	public static final String CLIENT_APP= "clientapp";
@@ -50,4 +51,11 @@ public class SwapiConstants {
 	public static final String JWT_TOKEN_EXPIRED= "JWT Token has expired";
 	public static final String BEARER_NOT_FOUND= "JWT Token does not begin with Bearer String";
 	
+	public static final String SWAGGER_AUTHORIZED = "/swagger-ui/*";
+	public static final String SWAGGER_API_DOCS = "/api-docs";
+	
+	
+	//Kafka Constants
+	public static final String TOPIC_NAME = "swapi-offline-data-topic";
+	public static final String GROUP_ID = "swapi-group";
 }	
