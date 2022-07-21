@@ -129,17 +129,19 @@ Below are the services which will be returned by url factory
 				kafka-server-start.bat D:\sofwares\kafka\config\server.properties
 				
 **creation topic: kafka :syntax Examples -- command prompt**
+	
 	kafka-topics -zookeeper localhost:2181 -topic <topic_name> -create  
 	kafka-topics  --zookeeper localhost:2181 --create --topic swapi-offline-data-topic--partitions 2 --replication-factor 2
 	kafka-topics  --bootstrap-server localhost:2181 --create --topic swapi-offline-data-topic --partitions 2 --replication-factor 2
-	
 	kafka-console-consumer -bootstrap-server localhost:9092 -topic -group swapi-group
 	
 **Kafka Producer and Consumer:**
+	
 	kafka-console-producer.bat -broker-list localhost:9092 -topic swapi-offline-data-topic
 	kafka-console-consumer.bat -bootstrap-server localhost:9092 -topic swapi-offline-data-topic
 	
 **Kafka Producer and Consumer services**
+	
 	Config.java -- kafka consumer factory configuration	
 	KafkaConsumerService.java-- Kafka consumer servces which consumes messages when api.offline.enbled =true and calls SwapiService.getItems() once starwar api is up.
 	KafkaProducerService.java --publish RequestData  to kafka topic during starwaar api is on offline mode.
@@ -165,9 +167,9 @@ Below are the services which will be returned by url factory
 	
 	
 **Code-Coverage:**	
+	
 	Running : start batch file in belowpath.
 	sonarqube-6.7.7\bin\windows-x86-64\StartNTService.bat
-  	
   	sonarQubeportal : http://localhost:9000 
   	
   	
