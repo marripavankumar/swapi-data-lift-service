@@ -6,6 +6,8 @@ public class SwapiConstants {
 	public static final String REQ_PARAM_NAME_EXPECTED = "Request param 'name' is madatory, cannot be empty or null";
 	public static final String DATA_NOT_FOUND = "Data Not Found";
 	
+	public static final String API_OFF_LINE  = "API Not available. we will be back soon";
+	
 	public static final String TYPE_NOT_FOUND_EXCEPTION = "Requested Url Type is not found." ;
 //	public static final String DATA_FOUND_EXCEPTION = "Requested Data Not Found" ;
 	

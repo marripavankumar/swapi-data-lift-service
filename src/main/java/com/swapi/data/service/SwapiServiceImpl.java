@@ -49,6 +49,9 @@ public class SwapiServiceImpl<T> implements SwapiService {
 	@Autowired
 	KafkaProducerService kafkaProducer;
 	
+	@Value("${api.offline.enabled}")
+	private boolean offlineFlag;
+	
 	private static Logger logger = LoggerFactory.getLogger(SwapiServiceImpl.class);
 	
 	
@@ -76,7 +79,10 @@ public class SwapiServiceImpl<T> implements SwapiService {
 		if(null == data) {
 			throw new DataNotFoundException(SwapiConstants.DATA_NOT_FOUND);
 		}
-
+		if(offlineFlag) {
+			kafkaProducer.sendMessage(type.concat(":").concat(name));
+//			throw new DataNotFoundException(SwapiConstants.API_OFF_LINE);
+		} 
 		return data;
 	}
 	

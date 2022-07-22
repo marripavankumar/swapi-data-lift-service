@@ -22,10 +22,11 @@ public class KafkaConsumerService
     private  SwapiService swapiService;
  
     @KafkaListener(topics = SwapiConstants.TOPIC_NAME, 
-            groupId = SwapiConstants.GROUP_ID, autoStartup = "#{systemProperties['api.offline.enabled']}")
-    public void consume(RequestData requestData) throws TypeNotFoundException, DataNotFoundException, Exception 
+            groupId = SwapiConstants.GROUP_ID, autoStartup = "${api.offline.enabled}")
+    public void consume(String requestData) throws TypeNotFoundException, DataNotFoundException, Exception 
     {
         logger.info(String.format("Message recieved -> %s", requestData));
-        swapiService.getItemDetails(requestData.getType(), requestData.getName());
+        String [] splitArray = requestData.split(":");
+        swapiService.getItemDetails(splitArray[0], splitArray[1]);
     }
 }
