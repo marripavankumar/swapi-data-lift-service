@@ -54,7 +54,7 @@
 			<version>0.9.1</version>
 		</dependency>
 		<!--OPEN API -->
-			<dependency>
+		<dependency>
 			<groupId>org.springframework.kafka</groupId>
 			<artifactId>spring-kafka</artifactId>
 		</dependency>
@@ -69,7 +69,18 @@
 			<artifactId>jackson-mapper-asl</artifactId>
 			<version>1.9.13</version>
 		</dependency>
-
+		 <dependency>
+                  <groupId>com.intuit.karate</groupId>
+                  <artifactId>karate-apache</artifactId>
+                  <version>0.9.5</version>
+                  <scope>test</scope>
+           </dependency>
+           <dependency>
+                    <groupId>com.intuit.karate</groupId>
+                    <artifactId>karate-junit4</artifactId>
+                    <version>0.9.5</version>
+                    <scope>test</scope>
+             </dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
@@ -129,6 +140,14 @@
 	</dependencies>
 
 	<build>
+	 <testResources>
+            <testResource>
+                   <directory>src/test/java</directory>
+                   <excludes>
+                            <exclude>**/*.java</exclude>
+                    </excludes>
+             </testResource>
+        </testResources> 
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -179,11 +198,8 @@
 					</execution>
 				</executions>
 			</plugin>
-			<!-- <plugin>
-                <groupId>org.sonarsource.scanner.maven</groupId>
-                <artifactId>sonar-maven-plugin</artifactId>
-                <version>3.4.0.905</version>
-            </plugin> -->
+			<!-- <plugin> <groupId>org.sonarsource.scanner.maven</groupId> <artifactId>sonar-maven-plugin</artifactId> 
+				<version>3.4.0.905</version> </plugin> -->
 		</plugins>
 	</build>
 
