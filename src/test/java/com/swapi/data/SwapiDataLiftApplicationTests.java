@@ -13,4 +13,9 @@ class SwapiDataLiftApplicationTests {
 		assertTrue(true);
 	}
 
+	
+	@Test
+	void contextLoads1() {
+		assertTrue(true);
+	}
 }
